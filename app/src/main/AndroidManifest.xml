@@ -2,12 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.actindi.line_login_sample">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".LineLoginSampleApplication">
+
+        <meta-data
+            android:name="jp.line.sdk.ChannelId"
+            android:value="1450949316" />
+        <meta-data
+            android:name="jp.line.sdk.AuthScheme"
+            android:value="line.1450949316" />
+
+        <activity android:name="jp.line.android.sdk.activity.LineAuthCompleteActivity"
+            android:configChanges="keyboard|orientation"
+            android:exported="true"
+            android:screenOrientation="sensor">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="line.1450949316" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="jp.line.android.sdk.activity.WebLoginActivity"
+            android:exported="false"
+            android:configChanges="keyboard|orientation"
+            android:screenOrientation="sensor">
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
